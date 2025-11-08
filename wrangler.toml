@@ -1,0 +1,9 @@
+name = "lession1-cloudflare"
+compatibility_date = "2025-01-15"
+pages_build_output_dir = ".vercel/output/static"
+
+[build]
+command = "npx @cloudflare/next-on-pages@1 --experimental-minify"
+
+[vars]
+DEEPSEEK_MODEL = "deepseek-chat"
