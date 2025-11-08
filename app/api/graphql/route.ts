@@ -99,8 +99,7 @@ async function fetchDeepseekCompletion(
   userMessage: string,
   env?: WorkerEnv
 ): Promise<string> {
-  // const apiKey = readEnvValue("DEEPSEEK_API_KEY", env);
-  const apiKey = 'sk-90743df882ec49b782732443075b4939'
+  const apiKey = readEnvValue("DEEPSEEK_API_KEY", env);
   if (!apiKey) {
     console.warn("[chat] Missing DEEPSEEK_API_KEY.");
     return "服务器缺少 DEEPSEEK_API_KEY，请先在环境变量或 Workers Secrets 中配置后再试。";
@@ -179,8 +178,8 @@ const yoga = createYoga({
   }),
   graphqlEndpoint: "/api/graphql",
   fetchAPI: { Request, Response, Headers },
-  context: ({ env }): YogaContext => ({
-    env: env as WorkerEnv | undefined,
+  context: ({ request }): YogaContext => ({
+    env: (request as any)?.env as WorkerEnv | undefined,
   }),
 });
 
